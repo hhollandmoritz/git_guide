@@ -121,6 +121,13 @@ git checkout master # change from the development branch to the master branch
 git merge development # merge branch back into development
 
 ```
+### Viewing branches on remote repositories
+
+```bash
+git branch -a
+```
+
+### Pulling down a branch from a remote repository
 
 ### Fancy merge tricks
 
@@ -141,6 +148,7 @@ git branch -d development # deletes development branch
 #### Setting up ssh so you don't have to write your password all the time
 more info here: https://kbroman.org/github_tutorial/pages/first_time.html
 
+#### Setting up usernames and emails in git
 
 ## In case of Emergency, read this
 #### I need to undo my commit!
