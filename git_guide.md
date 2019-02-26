@@ -3,6 +3,7 @@
 ## Basic git workflow
 
 (Assuming you've already created the repository)
+
 0. __pull__ down remote repository (usually github), in case any changes have been made.
 1. Make changes to a document
 	a. Use ``git status`` to determine which files have been changed, which are commited, and which need to be added. [*optional*]
@@ -39,7 +40,10 @@ git push # push changes to remote repository (if it's set up)
 cd mydirectory # go into the directory first
 git init # initialize directory
 
-# Use your favorite text editor to add files that you don't want tracked to git ignore, common examples include system files (prefaced with a "."), files that are too large to be pushed to github, files you don't want to share publicly, etc. 
+# Use your favorite text editor to add files that you don't want tracked to git ignore. 
+# common examples include system files (prefaced with a "."), 
+# files that are too large to be pushed to github, 
+# files you don't want to share publicly, etc. 
 nano .gitignore
 
 
