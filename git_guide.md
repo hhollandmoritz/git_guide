@@ -103,6 +103,12 @@ git branch # determine what branch you're on and which branches are available to
 
 git checkout development # (switch from your current branch to the development branch)
 ```
+### Pushing a branch to a remote repository (i.e. github)
+Branches will not automatically be pushed to a remote repository when you use ```git push```. To do this to a branch called "development" see below:
+
+```bash
+git push -u origin development
+```
 ### Merging a branch back into the main line safely
 
 One good strategy to prevent any mistakes or problems that might occur when merging a branch into the main line, is to first merge the mainline into the branch and *then* merge that branch back into the main line. 
@@ -126,8 +132,18 @@ git merge development # merge branch back into development
 ```bash
 git branch -a
 ```
+If your branch is not listed after `git branch -a` but you're pretty sure it is there you can do the following:
 
+```bash
+# downloads changes from remote branch but doesn't change your local branch
+git fetch
+```
 ### Pulling down a branch from a remote repository
+Branches won't automatically be pulled from remote repositories, to work on a branch that is listed in `git branch -a` but not local, you can create a local copy.
+
+```bash
+git checkout -b development origin/development
+```
 
 ### Fancy merge tricks
 
@@ -142,6 +158,16 @@ git branch -d development # deletes development branch
 
 ## Working with other people
 ### Working on someone else's project
+#### Set up someone's repo as an upstream repository
+```bash
+git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git
+git fetch upstream
+```
+#### Updating your fork from the original repo to keep up with changes
+```bash
+git fetch upstream # stage the changes from upstream
+git pull upstream master # make them permanant
+```
 ### Managing a project
 
 ## Nifty tricks
