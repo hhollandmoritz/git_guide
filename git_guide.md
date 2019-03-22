@@ -166,8 +166,18 @@ git fetch upstream
 #### Updating your fork from the original repo to keep up with changes
 ```bash
 git fetch upstream # stage the changes from upstream
-git pull upstream master # make them permanant
+git pull upstream master # make them permanant; pull from upstream/master
 ```
+#### Testing someone's pull request
+
+```bash
+# fetch the reference of the pull request based on the # ID and create a new branch in the process
+git fetch origin pull/ID/head:BRANCHNAME
+
+# if the pull request is on your upstream rather than your origin, use:
+git fetch upstream pull/ID/head:BRANCHNAME
+```
+
 ### Managing a project
 
 ## Nifty tricks
