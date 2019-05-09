@@ -256,5 +256,3 @@ rm -rf .git
 #### My situation isn't covered here! ####
 
 Checkout this site: https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/
-
-# This change is to test the github fork
