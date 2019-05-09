@@ -217,6 +217,18 @@ more info here: https://kbroman.org/github_tutorial/pages/first_time.html
 #### Setting up usernames and emails in git
 TBA
 
+#### Remembering what changes you made before creating a committ ####
+
+```bash
+# Before you've used "git add"
+
+git diff myfile.txt
+
+# After you've used "git add"
+git diff --cached myfile.txt
+
+```
+
 ## In case of Emergency, read this
 #### I need to undo my commit! (and I never want to get the changes back)####
 This scenario works if you've commited locally and not yet pushed those changes to the remote repository.
