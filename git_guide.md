@@ -253,6 +253,77 @@ To undo a git init, delete the .git folder. (Only do this if you're sure you wan
 rm -rf .git
 ```
 
+#### I accidentally added and committed a file that was too large for github to handle! ####
+
+If this happens you'll see this error:
+
+```bash
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: error: Trace: c36787f5781bee6d8e4e0b6192d15936
+remote: error: See http://git.io/iEPt8g for more information.
+remote: error: File largefile.txt is 126.28 MB; this exceeds GitHub's file size limit of 100.00 MB
+To https://github.com/gitusername/myrepository.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://gitusername@github.com/githusername/myrepository.git'
+```
+
+__Suggestion:__ If you are not used to working with a commandline editor, I recommend changing your default git editor to ```nano``` before you start this process (since it's more intuitive than the default ```vim```). 
+
+To change your editor: 
+
+```bash
+git config --global core.editor nano # changes git editor to nano for all git-related tasks
+
+```
+
+Fixing your commit history:
+
+Git rebase is your new best friend. Git rebase merges several commits into one (among other things). This will allow you to delete the file, commit that change and then merge the addition and deletion of the file into one commit step so that git doesn't try to push the large file to github and get stuck.
+
+Steps: 
+1. Delete the large file and commit the change.
+2. __squash__ the two commits into one large commit, using rebase.
+3. __commit__ those changes to the history
+4. __pull__ from the remote repository so you don't create conflicts with the commit history.
+5. __push__ the new commit history to github.
+
+
+```bash
+## remove file and commit changes
+rm largefile.txt # remove the offending file
+
+git status
+
+git rm largefile.txt
+
+git commit -m "removing the large file that I accidentally added"
+
+## view the commits you've made
+
+git log # should show a history of commits you've made, count back to the one where you added largefile.txt
+
+# Type "q" to get out of git log
+
+## Squash or remove the commits into one large commit
+
+git rebase -i HEAD~10 # open up and interactive git rebase command going back 10 commands
+
+# this opens up a text editor showing your options in comments; edit the "pick" on the  commands that you want to change.
+# I like to squash the commit where I added the file and the commit where I removed it into the command below them.
+# When you are finished editing the file. Save the output (ctrl + O, in nano) and exit (ctrl + X, in nano).
+# If promted, write a commit message telling what you did to change the history.
+
+## Pull from the remote repository
+
+git pull # (if promted write a commit message)
+
+## Push your changes to the commit history
+git push
+
+```
+
+
 #### My situation isn't covered here! ####
 
 Checkout this site: https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/
