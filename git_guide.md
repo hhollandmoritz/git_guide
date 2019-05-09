@@ -230,7 +230,7 @@ git diff --cached myfile.txt
 ```
 
 ## In case of Emergency, read this
-#### I need to undo my commit! (and I never want to get the changes back)####
+#### I need to undo my commit! (and I never want to get the changes back) ####
 This scenario works if you've commited locally and not yet pushed those changes to the remote repository.
 
 ```bash
