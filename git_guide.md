@@ -160,7 +160,7 @@ git branch -d development # deletes development branch
 
 ### Deleting branches safely after merge
 
-## Working with other people
+## Working with other people (or organizations)
 ### Working on someone else's project
 #### Set up someone's repo as an upstream repository
 ```bash
@@ -184,14 +184,54 @@ git fetch upstream pull/ID/head:BRANCHNAME
 
 ### Managing a project
 
+TBA
+
+#### Seeing the changes that someone made in order to decide if you want to accept them ####
+
+## Fixing mistakes ##
+#### Fix a commit message ####
+
+Only works after a commit but before a push.
+
+```bash
+git commit --amend -m "fixed message goes here"
+```
+
+#### Go back to an earlier commit ####
+```bash
+# Figure out the commit id that you want to undo
+git log 
+
+# output from git log will be a list of commits and their comments.
+# the commit id is a long number/digit combination that looks something
+# like this: 027ad6ee1e540716b421f58cc7efe60fdd9267f1
+
+# revert changes to that commit id
+git revert <commit_id>
+```
+
 ## Nifty tricks
 #### Setting up ssh so you don't have to write your password all the time
 more info here: https://kbroman.org/github_tutorial/pages/first_time.html
 
 #### Setting up usernames and emails in git
+TBA
 
 ## In case of Emergency, read this
-#### I need to undo my commit!
+#### I need to undo my commit! (and I never want to get the changes back)####
+This scenario works if you've commited locally and not yet pushed those changes to the remote repository.
+
+```bash
+# Figure out the commit id that you want to undo
+git log 
+
+# output from git log will be a list of commits and their comments.
+# the commit id is a long number/digit combination that looks something
+# like this: 027ad6ee1e540716b421f58cc7efe60fdd9267f1
+
+# reset changes to that commit id
+git reset --hard <commit_id>
+```
 
 #### I need to undo my ```git init```!
 To undo a git init, delete the .git folder. (Only do this if you're sure you want to delete all the history and everything git-related!!)
@@ -200,3 +240,7 @@ To undo a git init, delete the .git folder. (Only do this if you're sure you wan
 # In the directory where you typed "git init"
 rm -rf .git
 ```
+
+#### My situation isn't covered here! ####
+
+Checkout this site: https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/
