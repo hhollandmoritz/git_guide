@@ -1,5 +1,9 @@
 # Hannah's Ultimate Guide to All Useful Things Git
 
+*Guide created by Hannah Holland-Moritz*
+
+*Updated: May 9, 2019*
+
 ## Basic git workflow
 
 (Assuming you've already created the repository)
