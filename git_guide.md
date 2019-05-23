@@ -69,6 +69,45 @@ git remote add origin https://github.com/username/new_repo # connect your repo t
 git push -u origin master # set the remote as upstream to your local directory (i.e. source of information and reference directory that changes will be pushed to.)
 
 ```
+### Linking an already-created local repository to an already-created remote###
+
+First make sure the local director is initialized in git.
+
+```bash
+git init
+
+# If there are files in the directory add and commit them
+git status # see the files that need to be commited
+
+git add . # add all of them
+
+git commit -m "setting up repository"
+
+```
+If you have any existing local files that might have conflicts (i.e. differences) with the remote (for example .gitignore or README.md), it may be easier to rename them temporarily and reconcile differences later. 
+
+Add the remote repository
+```bash
+git remote add origin https://github.com/username/new_repo # connect your repo to the one on github. 
+```
+
+Now first **pull** any differences before you **push** to the remote.
+
+```bash
+# A pull is a fetch + a merge, we will do this separately do deal with existing files
+
+git fetch origin master # grab remote changes
+
+git merge origin master --allow-unrelated-histories
+
+# Now commit changes, if need be
+
+git commit -m "merging remote"
+
+# push changes to remote and set remote as upstream
+
+git push -u origin master # set the remote as upstream to your local directory (i.e. source of information and reference directory that changes will be pushed to.)
+```
 
 ## Branches
 ### What are branches for?
@@ -173,7 +212,7 @@ git fetch upstream # stage the changes from upstream
 git pull upstream master # make them permanant; pull from upstream/master
 ```
 #### Testing someone's pull request
-
+git@github.com:hhollandmoritz/NovaSeqTestdada2.git
 ```bash
 # fetch the reference of the pull request based on the # ID and create a new branch in the process
 git fetch origin pull/ID/head:BRANCHNAME
