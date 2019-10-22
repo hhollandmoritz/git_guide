@@ -2,7 +2,7 @@
 
 *Guide created by Hannah Holland-Moritz*
 
-*Updated: May 9, 2019*
+*Updated: Oct 22, 2019*
 
 ## Basic git workflow
 
@@ -88,7 +88,10 @@ If you have any existing local files that might have conflicts (i.e. differences
 
 Add the remote repository
 ```bash
-git remote add origin https://github.com/username/new_repo # connect your repo to the one on github. 
+git remote add origin https://github.com/username/new_repo.git # connect your repo to the one on github. 
+
+# *** If you have an ssh-key set up, you can avoid typing your user name by using the ssh version ****
+git remote add origin ssh://git@github.com/username/new_repo.git
 ```
 
 Now first **pull** any differences before you **push** to the remote.
@@ -336,6 +339,14 @@ Copy and paste the key into the space provided, and name it something helpful to
 
 
 Now when you are [setting up a repository](#setting-up-a-repository) you can use the ssh rather than the https key.
+
+To change an already existing repository from a https key to a ssh key do the following:
+```bash
+git remote show origin # see your current remote repository url
+
+git remote set-url origin git+ssh://git@github.com/username/reponame.git
+
+```
 
 ## In case of Emergency, read this
 #### I need to undo my commit! (and I never want to get the changes back) ####
