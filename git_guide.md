@@ -344,7 +344,7 @@ To change an already existing repository from a https key to a ssh key do the fo
 ```bash
 git remote show origin # see your current remote repository url
 
-git remote set-url origin git+ssh://git@github.com/username/reponame.git
+git remote set-url origin git@github.com/username/reponame.git
 
 ```
 
