@@ -104,6 +104,7 @@ git commit cheese.txt -m "wrote about cheese ingredients"
 
 **Notes about commit messages:**
  - like a lab notebook - should be informative 
+ - ideally, commit often and in small parts. This makes reverting back easier.
 
 ```
 git status
