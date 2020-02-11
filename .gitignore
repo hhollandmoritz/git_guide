@@ -1,1 +1,8 @@
 hello.txt
+.Rproj.user
+.Rhistory
+git_guide.Rproj
+knit/git_lesson_pres_cache
+knit/git_lesson_pres_files
+knit/git_lesson_pres.R
+knit/git_lesson_pres.tex

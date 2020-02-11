@@ -150,6 +150,7 @@ Nutritional yeast is made with microbes.
 ### Looking back in time
 
 ### Ignoring files
+* RSTUDIO
 
 ### Using Github (and other "remotes")
 
