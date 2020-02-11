@@ -20,16 +20,17 @@ Git commands take the format `git verb options`
 You will need to tell git who you are so it knows who made the changes in your documents. 
 
 ```bash
-git config --global user.name "Micky Mouse"
+git config --global user.name "Mickey Mouse"
 git config --global user.email "mickey1234@gmail.com"
 ```
 
-Optional: Change core editor to `nano` from `vim`
+*Optional: Change core editor to `nano` from `vim`*
+(for more editor options see [https://swcarpentry.github.io/git-novice/02-setup/index.html](https://swcarpentry.github.io/git-novice/02-setup/index.html))
+
 ```bash
 git config --global core.editor "nano -w"
 ```
-
-You can check out your settings with the following command:
+**Note: You can check out your settings with the following command**
 ```bash
 git config --list
 ```
