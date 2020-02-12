@@ -11,9 +11,8 @@ if (!dir.exists(knit.fp)) {dir.create(knit.fp)}
 
 #### Knitting Part 1: NameOfPart1 ####
 if (!file.exists(paste0(knit.fp, "/git_lesson_pres.R"))) {
-  file.symlink(from = paste0(project.fp, "/git_lesson_pres.R"),
-               to = paste0(knit.fp, "/git_lesson_pres.R"))
+  file.symlink(from = paste0(project.fp, "/git_lesson_pres.Rmd"),
+               to = paste0(knit.fp, "/git_lesson_pres.Rmd"))
 }
-o = knitr::spin(paste0(knit.fp, "/git_lesson_pres.R"), knit = FALSE)
-rmarkdown::render(o, "beamer_presentation")
+rmarkdown::render(paste0(knit.fp, "/git_lesson_pres.Rmd"), "beamer_presentation")
 #### =================================================================================================== ####

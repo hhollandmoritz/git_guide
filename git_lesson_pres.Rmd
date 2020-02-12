@@ -1,0 +1,70 @@
+---
+title: A crash course in version control with git
+author: Hannah Holland-Moritz
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output: 
+  beamer_presentation:
+    theme: "Boadilla"
+    slide_level: 2
+    toc: true
+---
+
+````{r knitr setup, include=FALSE}
+# some setup options for outputing markdown files; feel free to ignore these
+# These are the default options for this report; more information about options here: https://yihui.name/knitr/options/
+knitr::opts_chunk$set(eval = TRUE, # evaluate code chunks
+                      include = TRUE, # include the console output of the code in the final document
+                      echo = FALSE, # include the code that generated the report in the final report
+                      warning = FALSE, # include warnings
+                      message = FALSE, # include console messages
+                      collapse = TRUE, # Merge code blocks and output blocks, if possible.
+                      dpi = 300, # the default figure resolution
+                      fig.dim = c(6, 5.5), # the default figure dimensions
+                      cache = TRUE) # save the calculations so that kniting is faster each time. (Sometimes this option can cause issues and images won't reflect the most recent code changes, if this happens, just delete the *_cache folder and reknit the code.)
+````
+````{r loading libraries and set seed}
+
+
+set.seed(12345)
+````
+
+# Overview 
+## Today's Topics
+1. Introduction to `git`
+2. Git in the command line 
+- First steps
+- Setting up repositories
+- Tracking Changes
+- History
+- `.gitignore`
+- Using Github (and other remotes)
+- Collaborating
+- Conflicts
+3. Git in RStudio 
+
+# Introduction to `git` 
+
+## **Why should we be using version control?**
+
+1. To keep track of changes 
+   - Avoid the `mypaper_final_final_reallydonethistime.docx` problem.
+2. To document reasons for each change.
+3. To preserve multiple versions of documents simultaneously.
+   - This can be done with "branches".
+4. To collaborate with others and not create conflicting versions of the same document.
+
+## What is `git` doing?
+* Git keeps track of your changes. It monitors changes as if they were separate from the document itself.
+
+* Git commands take the format `git verb options` 
+
+# `git` in the command line
+
+## The first time you use git...
+You will need to tell git who you are so it knows who made the changes in your documents. 
+
+
+```bash
+git config --global user.name "Mickey Mouse"
+git config --global user.email "mickey1234@gmail.com"
+```
