@@ -340,7 +340,43 @@ git checkout master
 ```
 
 ## Ignoring files
-* RSTUDIO
+Git allows you to ignore files that you don't want tracked. Often these files are very large, temporary, or unnecessary to generate the final product. 
+
+Examples of good files to ignore:
+
+* RStudio files: `.Rproj.user, .Rhistory, *.Rproj, .RData`  
+* ```knitr``` cache files `*_cache/`  
+* Sensitive data files  
+
+To ignore these files use `nano` to create a file called `.gitignore` and add them in a list.
+
+## Ignoring files
+Example:
+
+```bash
+[hannah@localhost microbe]$ cat .gitignore 
+.Rproj.user
+.Rhistory
+microbes.Rproj
+.RData
+```
+## Ignoring files
+
+### Your turn!
+1. Use `nano` to create a file called `to_do.txt`. You don't need to keep track of changes in your to-do list so you will add it to your `.gitignore` file.
+```bash
+nano to_do.txt
+```
+```bash
+[hannah@localhost microbe]$ cat to_do.txt
+* write a plan
+* execute plan
+* celebrate
+```
+
+2. Use `nano` to create a file called `.gitignore`
+3. Add `to_do.txt` to the `.gitignore` file and then save and exit.
+4. Check your `git status`.
 
 # Break
 
@@ -348,7 +384,9 @@ git checkout master
 ### Cardinal Rule: Always `pull` before you `push`
 
 ## Collaborating
+
 [https://github.com/hhollandmoritz/collaboration_practice](https://github.com/hhollandmoritz/collaboration_practice)
+
 ### Your turn!
 1. Use nano to create a text file with your name, and write your favorite food in the text file.
 ```bash
