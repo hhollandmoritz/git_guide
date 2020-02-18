@@ -10,9 +10,9 @@ code.fp <- paste0(project.fp, "/code") # location of your scripts, sometimes thi
 if (!dir.exists(knit.fp)) {dir.create(knit.fp)}
 
 #### Knitting Part 1: NameOfPart1 ####
-if (!file.exists(paste0(knit.fp, "/git_lesson_pres.R"))) {
+if (!file.exists(paste0(knit.fp, "/git_lesson_pres.Rmd"))) {
   file.symlink(from = paste0(project.fp, "/git_lesson_pres.Rmd"),
                to = paste0(knit.fp, "/git_lesson_pres.Rmd"))
 }
-rmarkdown::render(paste0(knit.fp, "/git_lesson_pres.Rmd"), "beamer_presentation")
+rmarkdown::render(paste0(knit.fp, "/git_lesson_pres.Rmd"), "beamer_presentation", output_dir = knit.fp)
 #### =================================================================================================== ####
