@@ -12,9 +12,9 @@ output:
 ````{r knitr setup, include=FALSE}
 # some setup options for outputing markdown files; feel free to ignore these
 # These are the default options for this report; more information about options here: https://yihui.name/knitr/options/
-knitr::opts_chunk$set(eval = TRUE, # evaluate code chunks
+knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
                       include = TRUE, # include the console output of the code in the final document
-                      echo = FALSE, # include the code that generated the report in the final report
+                      echo = TRUE, # include the code that generated the report in the final report
                       warning = FALSE, # include warnings
                       message = FALSE, # include console messages
                       collapse = TRUE, # Merge code blocks and output blocks, if possible.
@@ -22,21 +22,25 @@ knitr::opts_chunk$set(eval = TRUE, # evaluate code chunks
                       fig.dim = c(6, 5.5), # the default figure dimensions
                       cache = TRUE) # save the calculations so that kniting is faster each time. (Sometimes this option can cause issues and images won't reflect the most recent code changes, if this happens, just delete the *_cache folder and reknit the code.)
 ````
-````{r loading libraries and set seed}
-
-
-set.seed(12345)
-````
 
 # Overview 
+## Resources/Links/Inspiration:
+Today's presentation is heavily inspired by:
+
+1. Sofware Carpentry's lesson in git
+   - [https://swcarpentry.github.io/git-novice/index.html](https://swcarpentry.github.io/git-novice/index.html)
+2. Max Joseph's git intro presentation
+   - [https://github.com/mbjoseph/git-intro](https://github.com/mbjoseph/git-intro)
+
 ## Today's Topics
 1. Introduction to `git`
 2. Git in the command line 
 - First steps
 - Setting up repositories
+- Working in repositories
+   + The change -> add -> commit cycle
 - Tracking Changes
-- History
-- `.gitignore`
+- Ignoring files with `.gitignore`
 - Using Github (and other remotes)
 - Collaborating
 - Conflicts
@@ -55,16 +59,313 @@ set.seed(12345)
 
 ## What is `git` doing?
 * Git keeps track of your changes. It monitors changes as if they were separate from the document itself.
+* Each change is a snapshot of the project in it's current state. 
+  - you get to choose which files are in the picture
+  - you can compare your picture to collaborators' pictures and choose to accept changes you like.
 
 * Git commands take the format `git verb options` 
 
 # `git` in the command line
 
-## The first time you use git...
-You will need to tell git who you are so it knows who made the changes in your documents. 
+## Setup
+Make a new directory
 
+```bash
+mkdir microbes
+cd microbes
+nano test.R
+```
+
+Write some short code
+```{r, eval=FALSE}
+x <- rnorm(n = 50, mean = 5, sd = 1)
+saveRDS(x, "x.RDS")
+```
+
+To exit `nano` type:  
+
+`ctrl+o`, `enter` (this saves the document)
+
+`ctrl+x`, `enter` (this closes the editor)
+
+## 
+Now we're ready to begin...
+
+## The first time you use git
+
+\hypertarget{back_to_config}{} 
+
+* You will need to tell git who you are so it knows who made the changes in your documents. 
+* To do this, we set a user name and user email.
 
 ```bash
 git config --global user.name "Mickey Mouse"
 git config --global user.email "mickey1234@gmail.com"
 ```
+
+* Check your configuration with the following command: 
+
+```bash
+git config --list
+```
+
+## The first time you use git 
+
+**Optional:**  
+
+ * Change core editor to `nano` from `vim` 
+ 
+```bash
+git config --global core.editor "nano -w"
+```
+
+\hyperlink{editor_config}{\beamerbutton{Click here for more config options}}
+
+
+## Setting up a repository
+
+*__repository__: a storage area (usually a directory) where git can store all the history of a project and information of who changed what and when.*
+
+1. Make (*initialize*) a new repository 
+
+```bash
+cd microbes
+git init
+```
+
+## Setting up a repository
+
+Check the repository was created
+```bash
+git status
+ls -a
+```
+You'll see a message about the branch, files that are committed/uncommitted, the commits, and a list of the files including the `.git` file.
+
+
+## Working in a repository 
+### The git workflow 
+1. make changes to file(s)  
+2. "stage" those file(s)  
+3. commit the changes 
+
+Worksheet time!
+
+## Working in a repository 
+!["the git workflow" ](/home/hannah/Documents/Fierer_lab/git_guide/git_lesson_imgs/git-committing.png)
+
+## Working in a repository 
+Now let's do this ourselves:
+
+
+## Working in a repository 
+Now let's do this ourselves:
+
+### Check on git status 
+
+```bash
+git status
+```
+One file - our `test.R` - file is "untracked".
+
+
+## Working in a repository 
+Now let's do this ourselves:
+
+### Check on git status 
+
+```bash
+git status
+```
+One file - our `test.R` - file is "untracked".
+
+### Stage the file 
+
+```bash 
+ git add test.R
+```
+Our file is now *staged* and ready to be committed. 
+
+
+## Working in a repository 
+Now let's do this ourselves:
+
+### Check on git status 
+
+```bash
+git status
+```
+One file - our `test.R` - file is "untracked".
+
+### Stage the file 
+
+```bash 
+ git add test.R
+```
+Our file is now *staged* and ready to be committed. 
+
+### Commit the changes  
+
+```bash
+git commit test.R -m "created initial test.R file"
+```
+ * We *commit* (take a snapshot of) the changes
+ * and give a message (`-m` flag) explaining what the purpose of the changes was.
+
+## Working in a repository
+### An aside about commit messages
+ - like a lab notebook - should be informative  
+ - ideally, you should commit often and in small parts. This makes reverting back easier
+
+###
+Bad messages:
+```bash
+-m "some updates"
+-m "fixes bugs"
+-m "adds three new sections"
+
+```
+## Working in a repository
+#### Now it's your turn:
+1. Create a new file called `plan_for_world_dominion.txt`  
+2. Write the following line for `plan_for_world_dominion.txt`
+```bash
+Microbes rule the world.
+```
+3. `add` and `commit` the file.
+
+## Tracking changes  
+
+* How can you figure out the differences between two files?
+* How do you go back in time, to a previous version of a file(s)? 
+
+## Tracking changes  
+First...
+
+###
+Add some code to our test.R file:
+```{r}
+x <- rnorm(n = 50, mean = 5, sd = 1)
+saveRDS(x, "x.RDS")
+y <- rnorm(n = 50, mean = 1, sd = 1)
+saveRDS(y, "y.RDS")
+```
+
+###
+```bash
+git status
+```
+The file is now shown as modified, but not yet staged. 
+
+## Tracking changes  
+
+### What if we forgot exactly what changed? 
+```bash
+git diff # shows line-by-line changes
+
+```
+
+###
+Fancy versions of `git diff`
+```bash
+git diff --color-words # shows word-by-word changes
+git diff --staged # shows changes when a document is staged
+```
+
+## Tracking changes: Looking back in time  
+
+### Looking back in time
+```bash
+git log
+```
+* The log shows a history of the commits you've made. Each is given a unique identifier that you can use to refer to that point in the history.  
+* For simplicity, git allows you to use the first 7 characters to refer to the entire identifier.
+
+## Tracking changes: Going back in time  
+
+* Everytime you make a commit, git takes a snapshot of all the changes to your committed files
+   + Each snapshot is referred to as a *HEAD*
+* Your history (`git log`), is a stack of HEADs
+* You can navigate between HEADs (i.e. versions) using the `git checkout` command
+
+Worksheet time!
+
+## Tracking changes: Going back in time  
+!["the git workflow" ](/home/hannah/Documents/Fierer_lab/git_guide/git_lesson_imgs/git-committing_with_heads.png)
+
+## Tracking changes: Going back in time  
+
+### Going back in time
+```bash
+git checkout HEAD~1 test.R
+```
+* The `~1` refers to the number of steps backward you want to go.  
+
+* If you don't want to count backwards, you can also use the unique identifier from ```git log```  
+
+```bash
+git checkout fe452Eu test.R
+```
+
+### Going back in time
+If you go back in time using the ```git checkout HEAD~1 <file>``` command, your file changes will register as modified, as if you just implemented the changes but have not yet staged or committed them.
+
+You can make changes, and proceed with the changes -> add -> commit cycle. 
+
+
+## Tracking changes: Going back in time
+
+### Your turn!
+1. Use `nano` to add the following line to the end of test.R  
+```{r}
+This line is a terrible idea.
+```
+
+2. Add and commit the change (don't forget to add a commit message!)  
+3. Use `git checkout` to undo the change.
+4. Replace the line with a better line
+```{r}
+# This line is a much better idea
+```
+5. Add and commit the change. 
+
+
+## Tracking changes: Going back in time  
+### WARNING! - the detached HEAD state
+```git checkout``` has multiple functions. If you don't specify a file name after ```git checkout```, you will go backwards in time, but not be able to commit any changes that you make. This is known as a *detached HEAD* state.
+
+* To get out of a detached HEAD state without saving any changes
+```bash
+git checkout master
+```
+
+## Ignoring files
+* RSTUDIO
+
+# Break
+
+## Using Github (and other "remotes")
+### Cardinal Rule: Always `pull` before you `push`
+
+## Collaborating
+[https://github.com/hhollandmoritz/collaboration_practice](https://github.com/hhollandmoritz/collaboration_practice)
+### Your turn!
+1. Use nano to create a text file with your name, and write your favorite food in the text file.
+```bash
+nano hannah.txt
+cat hannah.txt
+>chocolate
+```
+2. Add and commit your file.
+3. Pull any changes from the remote repository first. 
+4. Push your changes to the repository.
+
+## Conflicts
+
+# Git in RStudio
+
+# Extras
+## Changing editors 
+\hypertarget{editor_config}{}
+
+* For more editor options see [https://swcarpentry.github.io/git-novice/02-setup/index.html](https://swcarpentry.github.io/git-novice/02-setup/index.html))
