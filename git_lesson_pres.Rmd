@@ -385,7 +385,6 @@ nano to_do.txt
 4. Check your `git status`.
 
 
-# Break
 
 ## Working on branches
 * Branches allow you to create and test updates without affecting the working copy.
@@ -393,12 +392,14 @@ nano to_do.txt
 * You probably want to create a new branch if:
    - You are working on a series of large changes that constitute one update.
    - You want multiple working versions of your code (for example, a first and second draft for a paper)
-   - You think you might want to easily refer back to that repository state at some time in the future.
+   - You think you might want to easily refer back to that repository state at some time in the future.  
 
-The basic branch workflow:
+## Working on branches
+The basic branch workflow:  
+
 1. Create a new branch
 2. Make changes, test, commit those changes.
-3. "Merge"" the branch with the original copy of your work (the `master` branch)
+3. "Merge" the branch with the original copy of your work (the `master` branch)
 
 ## Working on branches
 To create a branch: 
@@ -436,6 +437,7 @@ Many people dread merging because it often leads to conflicts. Conflicts happen 
 
 Luckily branches provide a great solution for this! You can test out a merge before it happens and if all goes well, you can run the merge for real. 
 
+## Working on branches: Merging 
 ### The Scout Pattern - this method attributable to think-like-a-git.net
 1. Move to the master branch (or whatever branch you want to merge with)
 ```bash
@@ -445,6 +447,8 @@ git checkout master
 ```bash
 git checkout -b test_merge
 ```
+## Working on branches: Merging 
+### The Scout Pattern - Continued
 3. merge your development branch into test_merge
 ```bash
 git merge development
@@ -453,8 +457,10 @@ git merge development
   ```bash
   git reset --hard
   ```
-  b. If there is no conflict, the merge will happen automatically.
+  b. If there is no conflict, the merge will happen automatically. 
   
+## Working on branches: Merging 
+### The Scout Pattern - Continued
 4. If you are happy with your merge, you can now merge test_merge into master.
 ```bash
 git checkout master
@@ -467,16 +473,44 @@ git checkout master
 git branch -D test_merge
 ```
 
+## Working on branches: Merging 
+### The Scout Pattern - Your turn!
+Use the Scout pattern to merge changes from development into the master branch.  
+
+1. Move to the master branch and verify that everything is up to date. 
+
+2. Create and move into a new branch called test_merge.
+Hint: ```git checkout -b <branch name>``` creates a branch
+
+3. Merge development into `test_merge`.
+
+4. Move back to the `master` branch and merge the `test_merge` branch into it.
+
+# Break
+
 ## Using Github (and other "remotes")
 *__remote__: a repository that is not on your local computer. Remotes can be on any number of places, including websites like GitHub or Bitbucket, and on remote servers, such as microbe/proteus.*
 
 * Useful if you want a master copy that everyone draws from and contributes to.
 
 ## Create and connect to a remote
+Now we will all create a remote repository on github for our ```microbes``` file. 
+
+1. Create the empty repository on github
+  * important to prevent merge conflicts!: 
+    - do not create a readme
+    - do not create a .gitignore
+
+2. Let git know that a remote called `origin` exists; and tell it where to find it on the internet
 ```bash
 git remote add origin https://github.com/hhollandmoritz/microbes.git
+```
+3. Add all changes and files that are not in .gitignore to the remote repository.
+```bash
 git push -u origin master
 ```
+## Create and connect to a remote
+4. Anytime you make changes, you can now `git push` them to the repository online. 
 
 ### What are origin and master????
 * "origin" refers to the remote repository; technically you can call it anything, but most git documentation uses this convention so for clarity we will too.
@@ -484,22 +518,30 @@ git push -u origin master
    
 * master refers to the branch
 
+### Cardinal Rule: Always `pull` before you `push`
+This helps prevent merge conflicts! (It's similar to creating a test_merge branch).
+
 
 ## Connect to an already-existing remote:
 
-### Cardinal Rule: Always `pull` before you `push`
+[https://github.com/hhollandmoritz/collaboration_practice](https://github.com/hhollandmoritz/collaboration_practice)
+
+1. Clone (copy) the repository and all of its history onto your local computer.
+
 ```bash
-git push origin master
-         ^      ^
-         ^      name of the branch on the remote
-         name of the remote
+git clone https://github.com/hhollandmoritz/collaboration_practice.git
 ```
+
+2. Make some changes, add, and commit them.
+3. pull any new changes down from the remote repository first. Push your changes up to the repository. 
+
 ## Collaborating
 
 [https://github.com/hhollandmoritz/collaboration_practice](https://github.com/hhollandmoritz/collaboration_practice)
 
 ### Your turn!
-1. Use nano to create a text file with your name, and write your favorite food in the text file.
+1. Clone the `collaboration_practice` repository.
+2. Use nano to create a text file with your name, and write your favorite food in the text file.
 ```bash
 nano hannah.txt
 cat hannah.txt
@@ -509,7 +551,36 @@ cat hannah.txt
 3. Pull any changes from the remote repository first. 
 4. Push your changes to the repository.
 
-## Conflicts
+## Collaborating: Branches
+One great way to collaborate, is to create branches with your changes. This helps avoid conflicts. 
+
+The workflow: 
+
+1. Create a new branch to hold your chages and switch to it.
+```bash
+git checkout -b harry_potter
+```
+2. Make changes, add, and commit them.
+3. push your branch to the remote repository
+```bash
+git push -u origin harry_potter
+```
+
+## Collaborating: Branches
+Once you push a branch to github, you can create a pull-request on github, and merge the branches online, rather than using the command line. 
+
+## Collaborating: Branches
+### Your turn!
+1. Create a branch with the name of your favorite fictional character. 
+2. Use nano to create a text file with the character's name, and write their favorite food in the text file.
+```bash
+nano harry_potter.txt
+cat harry_potter.txt
+>treacle tart
+```
+2. Add and commit your file.
+4. Push your branch to the repository.
+5. We will merge the branches as a group. 
 
 # Git in RStudio
 
