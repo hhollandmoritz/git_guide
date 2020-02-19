@@ -30,7 +30,13 @@ Today's presentation is heavily inspired by:
 1. Sofware Carpentry's lesson in git
    - [https://swcarpentry.github.io/git-novice/index.html](https://swcarpentry.github.io/git-novice/index.html)
 2. Max Joseph's git intro presentation
-   - [https://github.com/mbjoseph/git-intro](https://github.com/mbjoseph/git-intro)
+   - [https://github.com/mbjoseph/git-intro](https://github.com/mbjoseph/git-intro) 
+3. Visual Git Reference
+   - [http://marklodato.github.io/visual-git-guide/index-en.html](http://marklodato.github.io/visual-git-guide/index-en.html) 
+4. git - the simple guide
+   - [https://rogerdudler.github.io/git-guide/](https://rogerdudler.github.io/git-guide/)
+5. Think like (a) Git (good site for advanced beginners - that's you, after today!)
+   - [http://think-like-a-git.net/](http://think-like-a-git.net/)
 
 ## Today's Topics
 1. Introduction to `git`
@@ -378,11 +384,116 @@ nano to_do.txt
 3. Add `to_do.txt` to the `.gitignore` file and then save and exit.
 4. Check your `git status`.
 
+
 # Break
 
-## Using Github (and other "remotes")
-### Cardinal Rule: Always `pull` before you `push`
+## Working on branches
+* Branches allow you to create and test updates without affecting the working copy.
+* The default branch is called `master`
+* You probably want to create a new branch if:
+   - You are working on a series of large changes that constitute one update.
+   - You want multiple working versions of your code (for example, a first and second draft for a paper)
+   - You think you might want to easily refer back to that repository state at some time in the future.
 
+The basic branch workflow:
+1. Create a new branch
+2. Make changes, test, commit those changes.
+3. "Merge"" the branch with the original copy of your work (the `master` branch)
+
+## Working on branches
+To create a branch: 
+```bash
+git branch # check what branch you are currently on
+git checkout -b <branchname> # the -b creates the branch; checkout moves you to the branch
+git branch # see that you have switched to the new branch.
+```
+
+To switch between branches: 
+```bash
+git branch # check what branch you are currently on
+git checkout <branchname> # checkout moves you to the branch
+git branch # see that you have switched to the new branch.
+```
+
+## Working on branches
+
+### Your turn!
+1. Create a new branch called `development`, and switch into it. 
+
+2. While on `development` make a new file called `notes.txt`; Write a note to yourself inside the file using `nano`. 
+
+3. Add and commit the changes. Check your `git status`
+4. Type `ls`
+4. Now changes branches back to master, and type `ls` again. What do you notice?
+
+
+## Working on branches: Merging 
+Many people dread merging because it often leads to conflicts. Conflicts happen when `git` can't figure out on it's own how to merge two files. 
+
+* Merge conflicts usually happen because:
+ - Two or more people make different changes to the same line of the same file. 
+ - One person deletes a file, and another person makes changes to the same file. 
+
+Luckily branches provide a great solution for this! You can test out a merge before it happens and if all goes well, you can run the merge for real. 
+
+### The Scout Pattern - this method attributable to think-like-a-git.net
+1. Move to the master branch (or whatever branch you want to merge with)
+```bash
+git checkout master
+```
+2. Create a new branch to test the merge and switch to it.
+```bash
+git checkout -b test_merge
+```
+3. merge your development branch into test_merge
+```bash
+git merge development
+```
+  a. If there is a conflict, you can try to resolve it by editing the files by hand, or abort the merge with the command 
+  ```bash
+  git reset --hard
+  ```
+  b. If there is no conflict, the merge will happen automatically.
+  
+4. If you are happy with your merge, you can now merge test_merge into master.
+```bash
+git checkout master
+git merge test_merge
+```
+
+If you are unhappy with the merge, move back to master and delete the test_merge branch.
+```bash
+git checkout master
+git branch -D test_merge
+```
+
+## Using Github (and other "remotes")
+*__remote__: a repository that is not on your local computer. Remotes can be on any number of places, including websites like GitHub or Bitbucket, and on remote servers, such as microbe/proteus.*
+
+* Useful if you want a master copy that everyone draws from and contributes to.
+
+## Create and connect to a remote
+```bash
+git remote add origin https://github.com/hhollandmoritz/microbes.git
+git push -u origin master
+```
+
+### What are origin and master????
+* "origin" refers to the remote repository; technically you can call it anything, but most git documentation uses this convention so for clarity we will too.
+   - "origin" is confusing because often you are making changes locally and then moving them to the remote repository rather than the other way around - unless you are collaborating.
+   
+* master refers to the branch
+
+
+## Connect to an already-existing remote:
+
+### Cardinal Rule: Always `pull` before you `push`
+```bash
+git push origin master
+         ^      ^
+         ^      name of the branch on the remote
+         name of the remote
+```
 ## Collaborating
 
 [https://github.com/hhollandmoritz/collaboration_practice](https://github.com/hhollandmoritz/collaboration_practice)
