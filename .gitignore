@@ -9,3 +9,4 @@ knit/git_lesson_pres.tex
 knit/git_lesson_pres.Rmd
 .RData
 git_lesson_pres_cache
+.gitignore
