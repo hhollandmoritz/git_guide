@@ -40,7 +40,7 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 ## Learning Goals for Today
 
 1.  Why use `git` ?
-2.  `Git`-ting started in RStudio (~~sorry~~)
+2.  `Git`-ting started (~~sorry~~)
 3.  The basic git workflow
 4.  If time: using 'remotes' (aka github)
 
@@ -83,12 +83,12 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 ## Git
 
 ::: {#fig-gitcl layout-ncol="1"}
-![checking repository status](git_lesson_imgs/git_status_command_line.png)
+![](git_lesson_imgs/git_status_command_line.png)
 :::
 
 ## Ways to interface with `git`
 
-1.  Use a program with a graphical user interface (GUI) such as GitHub desktop or Rstudio (many other options exist: [Github GUIs](https://git-scm.com/tools/guis))
+1.  Use a program with a graphical user interface (GUI) such as VSCode, GitHub desktop or Rstudio (many other options exist: [Github GUIs](https://git-scm.com/tools/guis))
 2.  The command line (instructions you type into your computer)
 
 *Today we won't focus on installing or setting up any of these, but come talk to me if you want help with that*
@@ -111,7 +111,7 @@ Demonstrate setting up an r project
 
 ## Pause to show repository setup
 
-![](git_lesson_imgs/new%20project%20setup%202.png)
+![](git_lesson_imgs/Screenshot From 2026-08-27 12-22-57.png)
 
 # Working in a repository
 
@@ -123,7 +123,7 @@ Demonstrate setting up an r project
 
 ![](git_lesson_imgs/git-committing.png)
 
-## Pause to show the workflow in Rstudio
+## Pause to show the workflow in Rstudio or VSCode
 
 ![](git_lesson_imgs/git_diff_screen.png)
 
@@ -188,6 +188,18 @@ git diff # shows line-by-line changes
 
 -   The log shows a history of the commits you've made. Each is given a unique identifier that you can use to refer to that point in the history.
 
+# Now you try:
+- Go to the following website: 
+[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+- Select Lesson 1, Introduction to git commits,
+- Work through the level (this tool won't require you to stage files, or add commit messages)
+
+# Working on branches
+
+![](git_lesson_imgs/learn_branching_landingpage.png)
+
+
 ## Working on branches
 
 -   Branches allow you to create and test updates without affecting the working copy.
@@ -210,6 +222,8 @@ The basic branch workflow:
 3.  "Merge" the branch with the original copy of your work (the `main` branch)
 
 ## Pause to create a branch
+
+
 
 ## Ignoring files
 
