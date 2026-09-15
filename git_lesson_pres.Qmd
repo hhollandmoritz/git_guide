@@ -58,7 +58,7 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 ## What is `git` doing?
 
 -   Git keeps track of your changes. It monitors changes as if they were separate from the document itself.
--   Each change is a snapshot of the project in it's current state.
+-   Each change is a snapshot of the project in its current state.
     -   you get to choose which files are in the picture
     -   you can compare your picture to collaborators' pictures and choose to accept changes you like.
 
@@ -66,7 +66,7 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 
 ![](git_lesson_imgs/git-committing.png)
 
-## The difference between `git` and GitHub
+## An aside: The difference between `git` and GitHub
 
 -   `git` is the name of the software (it's completely free)
 -   [GitHub](https://github.com) is a website that is meant as a public place to share code/projects that are tracked by git (it's mostly free but you have to pay for some bits if your projects get large)
@@ -74,7 +74,7 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 -   But GitHub is a helpful tool when you want to:
     -   publicly share code
     -   collaborate with those who are not on the same intra-net as you are
-    -   maintain two synced copies of code in different locations
+    -   maintain two synced copies of code in different locations (for example AVHE and Zest)
 
 ## Github
 
@@ -101,11 +101,16 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 
 1.  To start in git, you designate a folder where your all of your project files will be stored.
 
-This folder is called a repository (often shortened to "repo").
+- This folder is called a repository (often shortened to "repo").
 
-In RStudio this can be done when you set up a new project
+- In RStudio or VSCode this can be done when you set up a new project;
 
-::: notes
+- To use the command line: `git init`
+
+- You can also "clone" a repository (make a copy of someone else's repository) (`git clone <url>`)
+
+
+:::{.notes}
 Demonstrate setting up an r project
 :::
 
@@ -123,9 +128,18 @@ Demonstrate setting up an r project
 
 ![](git_lesson_imgs/git-committing.png)
 
-## Pause to show the workflow in Rstudio or VSCode
+:::{.notes}
+Ask the class, why do we have staging first? Why not just commit?
+ - testing if code works
+ - may have multiple changes across multiple files to bundle together
+:::
+
+## Pause to show the workflow 
+*in Rstudio or VSCode or [Learn Git Branching](https://learngitbranching.js.org/)*
 
 ![](git_lesson_imgs/git_diff_screen.png)
+[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
 
 ## 
 
@@ -188,12 +202,6 @@ git diff # shows line-by-line changes
 
 -   The log shows a history of the commits you've made. Each is given a unique identifier that you can use to refer to that point in the history.
 
-# Now you try:
-- Go to the following website: 
-[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
-
-- Select Lesson 1, Introduction to git commits,
-- Work through the level (this tool won't require you to stage files, or add commit messages)
 
 # Working on branches
 
@@ -218,12 +226,173 @@ git diff # shows line-by-line changes
 The basic branch workflow:
 
 1.  Create a new branch
-2.  Make changes, test, commit those changes.
-3.  "Merge" the branch with the original copy of your work (the `main` branch)
+2.  Make changes, test them, *stage*, and *commit* those changes.
+3.  *Merge* the branch with the original copy of your work (the `main` branch)
+
+## Working on branches - Command line version {visibility="hidden"}
+
+To create a branch:
+
+``` bash
+git branch # check what branch you are currently on
+git checkout -b <branchname> # the -b creates the branch; checkout moves you to the branch
+git branch # see that you have switched to the new branch.
+```
+
+To switch between branches:
+
+``` bash
+git branch # check what branch you are currently on
+git checkout <branchname> # checkout moves you to the branch
+git branch # see that you have switched to the new branch.
+```
+
+## Working on branches {visibility="hidden"}
+
+### Your turn!
+
+1.  Create a new branch called `development`, and switch into it.
+
+2.  While on `development` make a new file called `notes.txt`; Write a note to yourself inside the file using `nano`.
+
+3.  Add and commit the changes. Check your `git status`
+
+4.  Type `ls`
+
+5.  Now changes branches back to main, and type `ls` again. What do you notice?
+
 
 ## Pause to create a branch
 
+# Now you try - Working on branches:
+- Go to the following website: 
+[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
 
+- Select Lesson 1, Introduction to git commits,
+- Work through the level (this tool won't require you to stage files, or add commit messages)
+
+
+## Merging - Combining work done in parallel
+
+- How do we combine work from two branches?
+- Merging is a special kind of commit.
+  - "Include work from branch A, and from branch B, and from all of the parents of branch A and B." 
+- Merging pulls changes from a distant branch to the branch you are currently sitting on.
+
+##  Pause to demonstrate in sandbox  
+
+## Now you try - Merging branches:
+- Go to the following website: 
+[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+- Select Lesson 3, Merging in Git
+- Work through the level (this tool won't require you to stage files, or add commit messages)
+
+## Merging Dread
+
+Many people dread merging because it often leads to conflicts. Conflicts happen when `git` can't figure out on it's own how to merge two files.
+
+-   Merge conflicts usually happen because:
+-   Two or more people make different changes to the same line of the same file.
+-   One person deletes a file, and another person makes changes to the same file.
+
+Luckily branches provide a great solution for this! You can test out a merge before it happens and if all goes well, you can run the merge for real.
+
+## Merging Dread
+
+Workflow to avoid issues:
+
+- Merge main into your branch *first*
+- Resolve any issues
+- Test your code
+- Merge your branch into main.
+
+## Working on branches: Merging {visibility="hidden"}
+
+### The Scout Pattern Option - this method attributable to think-like-a-git.net
+
+1.  Move to the main branch (or whatever branch you want to merge with)
+
+``` bash
+git checkout main
+```
+
+2.  Create a new branch to test the merge and switch to it.
+
+``` bash
+git checkout -b test_merge
+```
+
+## Working on branches: Merging {visibility="hidden"}
+
+
+### The Scout Pattern - Continued
+
+3.  merge your development branch into test_merge
+
+``` bash
+git merge development
+```
+
+a.  If there is a conflict, you can try to resolve it by editing the files by hand, or abort the merge with the command
+
+``` bash
+git reset --hard
+```
+
+b.  If there is no conflict, the merge will happen automatically.
+
+## Working on branches: Merging {visibility="hidden"}
+
+
+### The Scout Pattern - Continued
+
+4.  If you are happy with your merge, you can now merge test_merge into main.
+
+``` bash
+git checkout main
+git merge test_merge
+```
+
+If you are unhappy with the merge, move back to main and delete the test_merge branch.
+
+``` bash
+git checkout main
+git branch -D test_merge
+```
+## Working on branches: Merging {visibility="hidden"}
+
+### The Scout Pattern - Your turn!
+
+Use the Scout pattern to merge changes from development into the main branch.
+
+1.  Move to the main branch and verify that everything is up to date.
+
+2.  Create and move into a new branch called test_merge. Hint: `git checkout -b <branch name>` creates a branch
+
+3.  Merge development into `test_merge`.
+
+4.  Move back to the `main` branch and merge the `test_merge` branch into it.
+
+## Working on Branches: Rebasing
+- Rebasing is a kind of merge
+- Rebasing takes a series of commits and copies them from one branch to another branch.
+- Advantage: Can make it easier to bring in changes from branches. 
+- Also a way to force-fix merge conflicts
+
+## Pause to Rebase in sandbox
+
+## Now you try - Rebasing branches:
+- Go to the following website: 
+[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+- Select Lesson 4, Intro to Rebasing
+- Work through the level (this tool won't require you to stage files, or add commit messages)
+
+
+## Topics for another day
+
+Today we won't create a remote for our repository, but I can show how it can be used (if time allows) 
 
 ## Ignoring files
 
@@ -255,9 +424,7 @@ microbes.Rproj
 
 -   Useful if you want a main copy that everyone draws from and contributes to.
 
-## Topics for another day
 
-Today we won't create a remote for our repository, but I can show how it can be used (if time allows)
 
 ## In Summary
 
@@ -335,113 +502,8 @@ git clone https://github.com/hhollandmoritz/collaboration_practice.git
 2.  Make some changes, add, and commit them.
 3.  pull any new changes down from the remote repository first. Push your changes up to the repository.
 
-## Working on branches
 
-To create a branch:
 
-``` bash
-git branch # check what branch you are currently on
-git checkout -b <branchname> # the -b creates the branch; checkout moves you to the branch
-git branch # see that you have switched to the new branch.
-```
-
-To switch between branches:
-
-``` bash
-git branch # check what branch you are currently on
-git checkout <branchname> # checkout moves you to the branch
-git branch # see that you have switched to the new branch.
-```
-
-## Working on branches
-
-### Your turn!
-
-1.  Create a new branch called `development`, and switch into it.
-
-2.  While on `development` make a new file called `notes.txt`; Write a note to yourself inside the file using `nano`.
-
-3.  Add and commit the changes. Check your `git status`
-
-4.  Type `ls`
-
-5.  Now changes branches back to main, and type `ls` again. What do you notice?
-
-## Working on branches: Merging
-
-Many people dread merging because it often leads to conflicts. Conflicts happen when `git` can't figure out on it's own how to merge two files.
-
--   Merge conflicts usually happen because:
--   Two or more people make different changes to the same line of the same file.
--   One person deletes a file, and another person makes changes to the same file.
-
-Luckily branches provide a great solution for this! You can test out a merge before it happens and if all goes well, you can run the merge for real.
-
-## Working on branches: Merging
-
-### The Scout Pattern - this method attributable to think-like-a-git.net
-
-1.  Move to the main branch (or whatever branch you want to merge with)
-
-``` bash
-git checkout main
-```
-
-2.  Create a new branch to test the merge and switch to it.
-
-``` bash
-git checkout -b test_merge
-```
-
-## Working on branches: Merging
-
-### The Scout Pattern - Continued
-
-3.  merge your development branch into test_merge
-
-``` bash
-git merge development
-```
-
-a.  If there is a conflict, you can try to resolve it by editing the files by hand, or abort the merge with the command
-
-``` bash
-git reset --hard
-```
-
-b.  If there is no conflict, the merge will happen automatically.
-
-## Working on branches: Merging
-
-### The Scout Pattern - Continued
-
-4.  If you are happy with your merge, you can now merge test_merge into main.
-
-``` bash
-git checkout main
-git merge test_merge
-```
-
-If you are unhappy with the merge, move back to main and delete the test_merge branch.
-
-``` bash
-git checkout main
-git branch -D test_merge
-```
-
-## Working on branches: Merging
-
-### The Scout Pattern - Your turn!
-
-Use the Scout pattern to merge changes from development into the main branch.
-
-1.  Move to the main branch and verify that everything is up to date.
-
-2.  Create and move into a new branch called test_merge. Hint: `git checkout -b <branch name>` creates a branch
-
-3.  Merge development into `test_merge`.
-
-4.  Move back to the `main` branch and merge the `test_merge` branch into it.
 
 ## Collaborating
 
