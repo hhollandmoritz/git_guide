@@ -19,6 +19,9 @@ format:
     preview-links: auto
     title-slide-attributes: 
       data-notes: some speaker notes
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r knitr setup, include=FALSE}
@@ -49,18 +52,21 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 ## **Why should we be using version control?**
 
 1.  To keep track of changes
-    -   Avoid the `mypaper_final_final_reallydonethistime.docx` problem.
+    - Avoid the `mypaper_final_final_reallydonethistime.docx` problem.
 2.  To document reasons for each change.
 3.  To preserve multiple versions of documents simultaneously.
-4.  To collaborate with others and not create conflicting versions of the same document.
+4.  To collaborate with others and not create conflicting versions of
+    the same document.
 5.  To be valuable to future employers! ;)
 
 ## What is `git` doing?
 
--   Git keeps track of your changes. It monitors changes as if they were separate from the document itself.
--   Each change is a snapshot of the project in its current state.
-    -   you get to choose which files are in the picture
-    -   you can compare your picture to collaborators' pictures and choose to accept changes you like.
+- Git keeps track of your changes. It monitors changes as if they were
+  separate from the document itself.
+- Each change is a snapshot of the project in its current state.
+  - you get to choose which files are in the picture
+  - you can compare your picture to collaborators' pictures and choose
+    to accept changes you like.
 
 ## Git workflow
 
@@ -68,13 +74,16 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 
 ## An aside: The difference between `git` and GitHub
 
--   `git` is the name of the software (it's completely free)
--   [GitHub](https://github.com) is a website that is meant as a public place to share code/projects that are tracked by git (it's mostly free but you have to pay for some bits if your projects get large)
--   You can use `git` without ever interfacing with GitHub,
--   But GitHub is a helpful tool when you want to:
-    -   publicly share code
-    -   collaborate with those who are not on the same intra-net as you are
-    -   maintain two synced copies of code in different locations (for example AVHE and Zest)
+- `git` is the name of the software (it's completely free)
+- [GitHub](https://github.com) is a website that is meant as a public
+  place to share code/projects that are tracked by git (it's mostly free
+  but you have to pay for some bits if your projects get large)
+- You can use `git` without ever interfacing with GitHub,
+- But GitHub is a helpful tool when you want to:
+  - publicly share code
+  - collaborate with those who are not on the same intra-net as you are
+  - maintain two synced copies of code in different locations (for
+    example premise and your local computer)
 
 ## Github
 
@@ -82,24 +91,38 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 
 ## Git
 
-::: {#fig-gitcl layout-ncol="1"}
 ![](git_lesson_imgs/git_status_command_line.png)
-:::
 
 ## Ways to interface with `git`
 
-1.  Use a program with a graphical user interface (GUI) such as VSCode, GitHub desktop or Rstudio (many other options exist: [Github GUIs](https://git-scm.com/tools/guis))
+1.  Use a program with a graphical user interface (GUI) such as VSCode,
+    GitHub desktop or Rstudio (many other options exist: [Github
+    GUIs](https://git-scm.com/tools/guis))
 2.  The command line (instructions you type into your computer)
 
-*Today we won't focus on installing or setting up any of these, but come talk to me if you want help with that*
+## Ways to interface with `git`
 
-[HappyGitWithR's Installation instructions](https://happygitwithr.com/install-git)
+::: nonincremental
+1.  Use a program with a graphical user interface (GUI) such as VSCode,
+    GitHub desktop or Rstudio (many other options exist: [Github
+    GUIs](https://git-scm.com/tools/guis))
+2.  The command line (instructions you type into your computer)
+
+*Today we won't focus on installing or setting up any of these, but come
+talk to me if you want help with that*
+
+[HappyGitWithR's Installation
+instructions](https://happygitwithr.com/install-git)
+:::
 
 ## Before you begin: set up a repository
 
-***repository**: a storage area (usually a directory) where git can store all the history of a project and information of who changed what and when.*
+***repository**: a storage area (usually a directory) where git can
+store all the history of a project and information of who changed what
+and when.*
 
-1.  To start in git, you designate a folder where your all of your project files will be stored.
+1.  To start in git, you designate a folder where your all of your
+    project files will be stored.
 
 - This folder is called a repository (often shortened to "repo").
 
@@ -107,16 +130,16 @@ knitr::opts_chunk$set(eval = FALSE, # evaluate code chunks
 
 - To use the command line: `git init`
 
-- You can also "clone" a repository (make a copy of someone else's repository) (`git clone <url>`)
+- You can also "clone" a repository (make a copy of someone else's
+  repository) (`git clone <url>`)
 
-
-:::{.notes}
+::: notes
 Demonstrate setting up an r project
 :::
 
 ## Pause to show repository setup
 
-![](git_lesson_imgs/Screenshot From 2026-08-27 12-22-57.png)
+![](git_lesson_imgs/Screenshot%20From%202026-08-27%2012-22-57.png)
 
 # Working in a repository
 
@@ -128,18 +151,19 @@ Demonstrate setting up an r project
 
 ![](git_lesson_imgs/git-committing.png)
 
-:::{.notes}
-Ask the class, why do we have staging first? Why not just commit?
- - testing if code works
- - may have multiple changes across multiple files to bundle together
+::: notes
+Ask the class, why do we have staging first? Why not just commit? -
+testing if code works - may have multiple changes across multiple files
+to bundle together
 :::
 
-## Pause to show the workflow 
-*in Rstudio or VSCode or [Learn Git Branching](https://learngitbranching.js.org/)*
+## Pause to show the workflow
+
+*in Rstudio or VSCode or [Learn Git
+Branching](https://learngitbranching.js.org/)*
 
 ![](git_lesson_imgs/git_diff_screen.png)
-[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
-
+<https://learngitbranching.js.org/>
 
 ## 
 
@@ -153,13 +177,21 @@ Our file is now *staged* and ready to be committed.
 
 ### Commit the changes
 
--   We *commit* (take a snapshot of) the changes
--   and give a message explaining what the purpose of the changes was.
+- We *commit* (take a snapshot of) the changes
+- and give a message explaining what the purpose of the changes was.
 
 ## An aside about commit messages
 
--   like a lab notebook - should be informative\
--   ideally, you should commit often and in small parts. This makes reverting back easier
+- like a lab notebook - should be informative\
+- ideally, you should commit often and in small parts. This makes
+  reverting back easier
+
+## An aside about commit messages
+
+::: nonincremental
+- like a lab notebook - should be informative\
+- ideally, you should commit often and in small parts. This makes
+  reverting back easier
 
 Bad messages:
 
@@ -168,12 +200,13 @@ Bad messages:
 -m "fixes bugs"
 -m "adds three new sections"
 ```
+:::
 
 ## Tracking changes
 
--   How can you figure out the differences between two files?
+- How can you figure out the differences between two files?
 
-## Tracking changes
+## Tracking changes {visibility="hidden"}
 
 First...
 
@@ -190,7 +223,7 @@ saveRDS(y, "y.RDS")
 
 The file is now shown as modified, but not yet staged.
 
-## Tracking changes
+## Tracking changes {visibility="hidden"}
 
 ### What if we forgot exactly what changed?
 
@@ -198,28 +231,32 @@ The file is now shown as modified, but not yet staged.
 git diff # shows line-by-line changes
 ```
 
-## Tracking changes: Looking back in time
+## Tracking changes: Looking back in time {visibility="hidden"}
 
--   The log shows a history of the commits you've made. Each is given a unique identifier that you can use to refer to that point in the history.
-
+- The log shows a history of the commits you've made. Each is given a
+  unique identifier that you can use to refer to that point in the
+  history.
 
 # Working on branches
 
 ![](git_lesson_imgs/learn_branching_landingpage.png)
 
+## Working on branches
+
+- Branches allow you to create and test updates without affecting the
+  working copy.
+- The default branch is called `main`
 
 ## Working on branches
 
--   Branches allow you to create and test updates without affecting the working copy.
--   The default branch is called `main`
-
-## Working on branches
-
--   You probably want to create a new branch if:
-    -   You are working on a series of large changes that constitute one update.
-    -   You want multiple working versions of your code (for example, a first and second draft for a paper)
-    -   You think you might want to easily refer back to that repository state at some time in the future.
-    -   You want to tinker with impunity
+- You probably want to create a new branch if:
+  - You are working on a series of large changes that constitute one
+    update.
+  - You want multiple working versions of your code (for example, a
+    first and second draft for a paper)
+  - You think you might want to easily refer back to that repository
+    state at some time in the future.
+  - You want to tinker with impunity
 
 ## Working on branches
 
@@ -227,7 +264,8 @@ The basic branch workflow:
 
 1.  Create a new branch
 2.  Make changes, test them, *stage*, and *commit* those changes.
-3.  *Merge* the branch with the original copy of your work (the `main` branch)
+3.  *Merge* the branch with the original copy of your work (the `main`
+    branch)
 
 ## Working on branches - Command line version {visibility="hidden"}
 
@@ -253,50 +291,61 @@ git branch # see that you have switched to the new branch.
 
 1.  Create a new branch called `development`, and switch into it.
 
-2.  While on `development` make a new file called `notes.txt`; Write a note to yourself inside the file using `nano`.
+2.  While on `development` make a new file called `notes.txt`; Write a
+    note to yourself inside the file using `nano`.
 
 3.  Add and commit the changes. Check your `git status`
 
 4.  Type `ls`
 
-5.  Now changes branches back to main, and type `ls` again. What do you notice?
-
+5.  Now changes branches back to main, and type `ls` again. What do you
+    notice?
 
 ## Pause to create a branch
 
 # Now you try - Working on branches:
-- Go to the following website: 
-[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+- Go to the following website: <https://learngitbranching.js.org/>
 
 - Select Lesson 1, Introduction to git commits,
-- Work through the level (this tool won't require you to stage files, or add commit messages)
 
+- Work through the level (this tool won't require you to stage files, or
+  add commit messages)
 
 ## Merging - Combining work done in parallel
 
 - How do we combine work from two branches?
 - Merging is a special kind of commit.
-  - "Include work from branch A, and from branch B, and from all of the parents of branch A and B." 
-- Merging pulls changes from a distant branch to the branch you are currently sitting on.
+  - "Include work from branch A, and from branch B, and from all of the
+    parents of branch A and B."
+- Merging pulls changes from a distant branch to the branch you are
+  currently sitting on.
 
-##  Pause to demonstrate in sandbox  
+## Pause to demonstrate in sandbox
 
 ## Now you try - Merging branches:
-- Go to the following website: 
-[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+- Go to the following website: <https://learngitbranching.js.org/>
 
 - Select Lesson 3, Merging in Git
-- Work through the level (this tool won't require you to stage files, or add commit messages)
+
+- Work through the level (this tool won't require you to stage files, or
+  add commit messages)
 
 ## Merging Dread
 
-Many people dread merging because it often leads to conflicts. Conflicts happen when `git` can't figure out on it's own how to merge two files.
+Many people dread merging because it often leads to conflicts. Conflicts
+happen when `git` can't figure out on it's own how to merge two files.
 
--   Merge conflicts usually happen because:
--   Two or more people make different changes to the same line of the same file.
--   One person deletes a file, and another person makes changes to the same file.
+- Merge conflicts usually happen because:
+- Two or more people make different changes to the same line of the same
+  file.
+- One person deletes a file, and another person makes changes to the
+  same file.
 
-Luckily branches provide a great solution for this! You can test out a merge before it happens and if all goes well, you can run the merge for real.
+Luckily branches provide a great solution for this! You can test out a
+merge before it happens and if all goes well, you can run the merge for
+real.
 
 ## Merging Dread
 
@@ -325,7 +374,6 @@ git checkout -b test_merge
 
 ## Working on branches: Merging {visibility="hidden"}
 
-
 ### The Scout Pattern - Continued
 
 3.  merge your development branch into test_merge
@@ -334,7 +382,8 @@ git checkout -b test_merge
 git merge development
 ```
 
-a.  If there is a conflict, you can try to resolve it by editing the files by hand, or abort the merge with the command
+a.  If there is a conflict, you can try to resolve it by editing the
+    files by hand, or abort the merge with the command
 
 ``` bash
 git reset --hard
@@ -344,67 +393,79 @@ b.  If there is no conflict, the merge will happen automatically.
 
 ## Working on branches: Merging {visibility="hidden"}
 
-
 ### The Scout Pattern - Continued
 
-4.  If you are happy with your merge, you can now merge test_merge into main.
+4.  If you are happy with your merge, you can now merge test_merge into
+    main.
 
 ``` bash
 git checkout main
 git merge test_merge
 ```
 
-If you are unhappy with the merge, move back to main and delete the test_merge branch.
+If you are unhappy with the merge, move back to main and delete the
+test_merge branch.
 
 ``` bash
 git checkout main
 git branch -D test_merge
 ```
+
 ## Working on branches: Merging {visibility="hidden"}
 
 ### The Scout Pattern - Your turn!
 
-Use the Scout pattern to merge changes from development into the main branch.
+Use the Scout pattern to merge changes from development into the main
+branch.
 
 1.  Move to the main branch and verify that everything is up to date.
 
-2.  Create and move into a new branch called test_merge. Hint: `git checkout -b <branch name>` creates a branch
+2.  Create and move into a new branch called test_merge. Hint:
+    `git checkout -b <branch name>` creates a branch
 
 3.  Merge development into `test_merge`.
 
-4.  Move back to the `main` branch and merge the `test_merge` branch into it.
+4.  Move back to the `main` branch and merge the `test_merge` branch
+    into it.
 
 ## Working on Branches: Rebasing
+
 - Rebasing is a kind of merge
-- Rebasing takes a series of commits and copies them from one branch to another branch.
-- Advantage: Can make it easier to bring in changes from branches. 
+- Rebasing takes a series of commits and copies them from one branch to
+  another branch.
+- Advantage: Can make it easier to bring in changes from branches.
 - Also a way to force-fix merge conflicts
 
 ## Pause to Rebase in sandbox
 
 ## Now you try - Rebasing branches:
-- Go to the following website: 
-[https://learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+- Go to the following website: <https://learngitbranching.js.org/>
 
 - Select Lesson 4, Intro to Rebasing
-- Work through the level (this tool won't require you to stage files, or add commit messages)
 
+- Work through the level (this tool won't require you to stage files, or
+  add commit messages)
 
 ## Topics for another day
 
-Today we won't create a remote for our repository, but I can show how it can be used (if time allows) 
+Today we won't create a remote for our repository, but I can show how it
+can be used (if time allows)
 
 ## Ignoring files
 
-Git allows you to ignore files that you don't want tracked. Often these files are very large, temporary, or unnecessary to generate the final product.
+Git allows you to ignore files that you don't want tracked. Often these
+files are very large, temporary, or unnecessary to generate the final
+product.
 
 Examples of good files to ignore:
 
--   RStudio files: `.Rproj.user, .Rhistory, *.Rproj, .RData`\
--   `knitr` cache files `*_cache/`\
--   Sensitive data files
+- RStudio files: `.Rproj.user, .Rhistory, *.Rproj, .RData`\
+- `knitr` cache files `*_cache/`\
+- Sensitive data files
 
-To ignore these files use `nano` to create a file called `.gitignore` and add them in a list.
+To ignore these files use `nano` to create a file called `.gitignore`
+and add them in a list.
 
 ## Ignoring files
 
@@ -420,56 +481,63 @@ microbes.Rproj
 
 ## Using Github (and other "remotes")
 
-***remote**: a repository that is not on your local computer. Remotes can be on any number of places, including websites like GitHub or Bitbucket, and on remote servers, such as microbe/proteus.*
+***remote**: a repository that is not on your local computer. Remotes
+can be on any number of places, including websites like GitHub or
+Bitbucket, and on remote servers, such as microbe/proteus.*
 
--   Useful if you want a main copy that everyone draws from and contributes to.
-
-
+- Useful if you want a main copy that everyone draws from and
+  contributes to.
 
 ## In Summary
 
--   Git is a powerful tool and we should all be using it for our code!
+- Git is a powerful tool and we should all be using it for our code!
 
--   It has a bit of a learning curve, but GUI's exist that make it much, much, easier
+- It has a bit of a learning curve, but GUI's exist that make it much,
+  much, easier
 
--   The best way to learn, is to start tracking changes on your own projects!
+- The best way to learn, is to start tracking changes on your own
+  projects!
 
--   I'm here and happy to be a resource, for questions you might have
+- I'm here and happy to be a resource, for questions you might have
 
 ## Resources/Links/Inspiration:
 
 Today's presentation is heavily inspired by:
 
 1.  Sofware Carpentry's lesson in git
-    -   <https://swcarpentry.github.io/git-novice/index.html>
+    - <https://swcarpentry.github.io/git-novice/index.html>
 2.  Max Joseph's git intro presentation
-    -   <https://github.com/mbjoseph/git-intro>
+    - <https://github.com/mbjoseph/git-intro>
 3.  Visual Git Reference
-    -   <http://marklodato.github.io/visual-git-guide/index-en.html>
+    - <http://marklodato.github.io/visual-git-guide/index-en.html>
 4.  git - the simple guide
-    -   <https://rogerdudler.github.io/git-guide/>
-5.  Think like (a) Git (good site for advanced beginners - that's you, after today!)
-    -   <http://think-like-a-git.net/>
+    - <https://rogerdudler.github.io/git-guide/>
+5.  Think like (a) Git (good site for advanced beginners - that's you,
+    after today!)
+    - <http://think-like-a-git.net/>
 
 # Topics for another day
 
 ## Create and connect to a remote
 
-Now we will all create a remote repository on github for our `microbes` file.
+Now we will all create a remote repository on github for our `microbes`
+file.
 
 1.  Create the empty repository on github
 
--   important to prevent merge conflicts!:
-    -   do not create a readme
-    -   do not create a .gitignore
+- important to prevent merge conflicts!:
+  - do not create a readme
+  - do not create a .gitignore
 
-2.  Let git know that a remote called `origin` exists; and tell it where to find it on the internet
+2.  Let git know that a remote called `origin` exists; and tell it where
+    to find it on the internet
 
 ``` bash
 git remote add origin https://github.com/hhollandmoritz/microbes.git
 ```
 
-3.  Add all changes and files that are not in .gitignore to the remote repository.
+3.  Add all changes and files that are not in .gitignore to the remote
+    repository.
 
 ``` bash
 git push -u origin main
@@ -477,33 +545,38 @@ git push -u origin main
 
 ## Create and connect to a remote
 
-4.  Anytime you make changes, you can now `git push` them to the repository online.
+4.  Anytime you make changes, you can now `git push` them to the
+    repository online.
 
 ### What are origin and main????
 
--   "origin" refers to the remote repository; technically you can call it anything, but most git documentation uses this convention so for clarity we will too.
-    -   "origin" is confusing because often you are making changes locally and then moving them to the remote repository rather than the other way around - unless you are collaborating.
--   main refers to the branch
+- "origin" refers to the remote repository; technically you can call it
+  anything, but most git documentation uses this convention so for
+  clarity we will too.
+  - "origin" is confusing because often you are making changes locally
+    and then moving them to the remote repository rather than the other
+    way around - unless you are collaborating.
+- main refers to the branch
 
 ### Cardinal Rule: Always `pull` before you `push`
 
-This helps prevent merge conflicts! (It's similar to creating a test_merge branch).
+This helps prevent merge conflicts! (It's similar to creating a
+test_merge branch).
 
 ## Connect to an already-existing remote:
 
 <https://github.com/hhollandmoritz/collaboration_practice>
 
-1.  Clone (copy) the repository and all of its history onto your local computer.
+1.  Clone (copy) the repository and all of its history onto your local
+    computer.
 
 ``` bash
 git clone https://github.com/hhollandmoritz/collaboration_practice.git
 ```
 
 2.  Make some changes, add, and commit them.
-3.  pull any new changes down from the remote repository first. Push your changes up to the repository.
-
-
-
+3.  pull any new changes down from the remote repository first. Push
+    your changes up to the repository.
 
 ## Collaborating
 
@@ -512,7 +585,8 @@ git clone https://github.com/hhollandmoritz/collaboration_practice.git
 ### Your turn!
 
 1.  Clone the `collaboration_practice` repository.
-2.  Use nano to create a text file with your name, and write your favorite food in the text file.
+2.  Use nano to create a text file with your name, and write your
+    favorite food in the text file.
 
 ``` bash
 nano hannah.txt
@@ -526,7 +600,8 @@ cat hannah.txt
 
 ## Collaborating: Branches
 
-One great way to collaborate, is to create branches with your changes. This helps avoid conflicts.
+One great way to collaborate, is to create branches with your changes.
+This helps avoid conflicts.
 
 The workflow:
 
@@ -545,14 +620,17 @@ git push -u origin harry_potter
 
 ## Collaborating: Branches
 
-Once you push a branch to github, you can create a pull-request on github, and merge the branches online, rather than using the command line.
+Once you push a branch to github, you can create a pull-request on
+github, and merge the branches online, rather than using the command
+line.
 
 ## Collaborating: Branches
 
 ### Your turn!
 
 1.  Create a branch with the name of your favorite fictional character.
-2.  Use nano to create a text file with the character's name, and write their favorite food in the text file.
+2.  Use nano to create a text file with the character's name, and write
+    their favorite food in the text file.
 
 ``` bash
 nano harry_potter.txt
@@ -597,15 +675,16 @@ Now we're ready to begin...
 
 \hypertarget{back_to_config}{}
 
--   You will need to tell git who you are so it knows who made the changes in your documents.
--   To do this, we set a user name and user email.
+- You will need to tell git who you are so it knows who made the changes
+  in your documents.
+- To do this, we set a user name and user email.
 
 ``` bash
 git config --global user.name "Mickey Mouse"
 git config --global user.email "mickey1234@gmail.com"
 ```
 
--   Check your configuration with the following command:
+- Check your configuration with the following command:
 
 ``` bash
 git config --list
@@ -615,7 +694,7 @@ git config --list
 
 **Optional:**
 
--   Change core editor to `nano` from `vim`
+- Change core editor to `nano` from `vim`
 
 ``` bash
 git config --global core.editor "nano -w"
@@ -629,19 +708,21 @@ git config --global core.editor "nano -w"
 
 \hypertarget{editor_config}{}
 
--   For more editor options see <https://swcarpentry.github.io/git-novice/02-setup/index.html>)
+- For more editor options see
+  <https://swcarpentry.github.io/git-novice/02-setup/index.html>)
 
 ## Resources/Links/Inspiration:
 
 Today's presentation is heavily inspired by:
 
 1.  Sofware Carpentry's lesson in git
-    -   <https://swcarpentry.github.io/git-novice/index.html>
+    - <https://swcarpentry.github.io/git-novice/index.html>
 2.  Max Joseph's git intro presentation
-    -   <https://github.com/mbjoseph/git-intro>
+    - <https://github.com/mbjoseph/git-intro>
 3.  Visual Git Reference
-    -   <http://marklodato.github.io/visual-git-guide/index-en.html>
+    - <http://marklodato.github.io/visual-git-guide/index-en.html>
 4.  git - the simple guide
-    -   <https://rogerdudler.github.io/git-guide/>
-5.  Think like (a) Git (good site for advanced beginners - that's you, after today!)
-    -   <http://think-like-a-git.net/>
+    - <https://rogerdudler.github.io/git-guide/>
+5.  Think like (a) Git (good site for advanced beginners - that's you,
+    after today!)
+    - <http://think-like-a-git.net/>
